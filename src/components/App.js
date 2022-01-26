@@ -1,7 +1,9 @@
 import Header from './ui/Header';
+import Footer from './ui/Footer';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../components/ui/Theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
@@ -18,6 +20,7 @@ function App() {
 					<Route exact path='/contact' element={<div>contact</div>} />
 					<Route exact path='/estimate' element={<div>estimate</div>} />
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</ThemeProvider>
 	);
