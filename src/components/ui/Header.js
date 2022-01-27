@@ -20,6 +20,8 @@ import { makeStyles } from '@mui/styles';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
+import { useRecoilState } from 'recoil';
+import { valueState, selectedIndexState } from '../../atoms/stateAtoms';
 
 // Elevated AppBar function
 function ElevationScroll(props) {
@@ -111,8 +113,9 @@ const Header = () => {
 	const smallScreens = useMediaQuery(theme.breakpoints.down('lg')); // any breakpoints below md will return true
 	const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent); // checked whether the device is IOS
 
-	const [value, setValue] = useState(0); // index of nav item
-	const [selectedIndex, setSelectedIndex] = useState(0); // index of nav submenu item
+	const [value, setValue] = useRecoilState(valueState); // index of nav item
+	const [selectedIndex, setSelectedIndex] = useRecoilState(selectedIndexState); // index of nav submenu item
+
 	const [openDrawer, setOpenDrawer] = useState(false); // open drawer
 	const [openSubmenu, setOpenSubmenu] = useState(false); // open submenu
 	const [anchorEl, setAnchorEl] = useState(null); // nav item target
