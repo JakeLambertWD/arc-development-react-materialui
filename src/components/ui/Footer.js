@@ -1,8 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import { Grid } from '@mui/material';
+import { Grid, Hidden } from '@mui/material';
 import { Link } from 'react-router-dom';
 import footerAdorment from '../../assets/Footer Adornment.svg';
+import facebook from '../../assets/facebook.svg';
+import instagram from '../../assets/instagram.svg';
+import twitter from '../../assets/twitter.svg';
 import { useRecoilState } from 'recoil';
 import { valueState, selectedIndexState } from '../../atoms/stateAtoms';
 
@@ -36,6 +39,15 @@ const useStyles = makeStyles(theme => ({
 	},
 	gridItem: {
 		margin: '5em !important'
+	},
+	icon: {
+		height: '2.5em',
+		width: '2.5em',
+		marginRight: '1em !important'
+	},
+	iconContainer: {
+		position: 'absolute',
+		marginTop: '-6em'
 	}
 }));
 
@@ -51,68 +63,119 @@ const Footer = () => {
 	return (
 		<footer className={classes.footer}>
 			<div>
-				<Grid container justifyContent='center' className={classes.mainContainer}>
-					<Grid item className={classes.gridItem}>
-						<Grid container direction='column' spacing={2}>
-							<Grid item component={Link} to='/' className={classes.link}>
-								Home
+				<Hidden lgDown>
+					<Grid container justifyContent='center' className={classes.mainContainer}>
+						<Grid item className={classes.gridItem}>
+							<Grid container direction='column' spacing={2}>
+								<Grid item component={Link} to='/' onClick={() => setValue(0)} className={classes.link}>
+									Home
+								</Grid>
+							</Grid>
+						</Grid>
+						<Grid item className={classes.gridItem}>
+							<Grid container direction='column' spacing={2}>
+								<Grid
+									item
+									component={Link}
+									to='/services'
+									onClick={() => {
+										setValue(1);
+										setSelectedIndex(0);
+									}}
+									className={classes.link}
+								>
+									Services
+								</Grid>
+								<Grid
+									item
+									component={Link}
+									to='/customsoftware'
+									onClick={() => {
+										setValue(1);
+										setSelectedIndex(1);
+									}}
+									className={classes.link}
+								>
+									Custom Software Development
+								</Grid>
+								<Grid
+									item
+									component={Link}
+									to='/mobileapps'
+									onClick={() => {
+										setValue(1);
+										setSelectedIndex(2);
+									}}
+									className={classes.link}
+								>
+									Mobile App Development
+								</Grid>
+								<Grid
+									item
+									component={Link}
+									to='/websites'
+									onClick={() => {
+										setValue(1);
+										setSelectedIndex(3);
+									}}
+									className={classes.link}
+								>
+									Website Development
+								</Grid>
+							</Grid>
+						</Grid>
+						<Grid item className={classes.gridItem}>
+							<Grid container direction='column' spacing={2}>
+								<Grid item component={Link} to='/revolution' onClick={() => setValue(2)} className={classes.link}>
+									The Revolution
+								</Grid>
+								<Grid item component={Link} to='/revolution' onClick={() => setValue(2)} className={classes.link}>
+									Vision
+								</Grid>
+								<Grid item component={Link} to='/revolution' onClick={() => setValue(2)} className={classes.link}>
+									Technology
+								</Grid>
+								<Grid item component={Link} to='/revolution' onClick={() => setValue(2)} className={classes.link}>
+									Process
+								</Grid>
+							</Grid>
+						</Grid>
+						<Grid item className={classes.gridItem}>
+							<Grid container direction='column' spacing={2}>
+								<Grid item component={Link} to='/about' component={Link} to='/about' onClick={() => setValue(3)} className={classes.link}>
+									About Us
+								</Grid>
+								<Grid item component={Link} to='/about' onClick={() => setValue(3)} className={classes.link}>
+									History
+								</Grid>
+								<Grid item component={Link} to='/about' onClick={() => setValue(3)} className={classes.link}>
+									Team
+								</Grid>
+							</Grid>
+						</Grid>
+						<Grid item className={classes.gridItem}>
+							<Grid container direction='column' spacing={2}>
+								<Grid item component={Link} to='/contact' onClick={() => setValue(4)} className={classes.link}>
+									Contact Us
+								</Grid>
 							</Grid>
 						</Grid>
 					</Grid>
-					<Grid item className={classes.gridItem}>
-						<Grid container direction='column' spacing={2}>
-							<Grid item component={Link} to='/services' className={classes.link}>
-								Services
-							</Grid>
-							<Grid item component={Link} to='/customsoftware' className={classes.link}>
-								Custom Software Development
-							</Grid>
-							<Grid item component={Link} to='/mobileapps' className={classes.link}>
-								Mobile App Development
-							</Grid>
-							<Grid item component={Link} to='/websites' className={classes.link}>
-								Website Development
-							</Grid>
-						</Grid>
+				</Hidden>
+
+				<img src={footerAdorment} alt='Big black slash' className={classes.adornment} />
+
+				<Grid container justifyContent='flex-end' className={classes.iconContainer}>
+					<Grid item component={'a'} href='https://www.facebook.com' className={classes.icon}>
+						<img src={facebook} alt='Facebook' />
 					</Grid>
-					<Grid item className={classes.gridItem}>
-						<Grid container direction='column' spacing={2}>
-							<Grid item component={Link} to='/revolution' className={classes.link}>
-								The Revolution
-							</Grid>
-							<Grid item component={Link} to='/revolution' className={classes.link}>
-								Vision
-							</Grid>
-							<Grid item component={Link} to='/revolution' className={classes.link}>
-								Technology
-							</Grid>
-							<Grid item component={Link} to='/revolution' className={classes.link}>
-								Process
-							</Grid>
-						</Grid>
+					<Grid item component={'a'} href='https://www.twitter.com' className={classes.icon}>
+						<img src={twitter} alt='twitter' />
 					</Grid>
-					<Grid item className={classes.gridItem}>
-						<Grid container direction='column' spacing={2}>
-							<Grid item component={Link} to='/about' component={Link} to='/about' className={classes.link}>
-								About Us
-							</Grid>
-							<Grid item component={Link} to='/about' className={classes.link}>
-								History
-							</Grid>
-							<Grid item component={Link} to='/about' className={classes.link}>
-								Team
-							</Grid>
-						</Grid>
-					</Grid>
-					<Grid item className={classes.gridItem}>
-						<Grid container direction='column' spacing={2}>
-							<Grid item component={Link} to='/contact' className={classes.link}>
-								Contact Us
-							</Grid>
-						</Grid>
+					<Grid item component={'a'} href='https://www.instagram.com' className={classes.icon}>
+						<img src={instagram} alt='instagram' />
 					</Grid>
 				</Grid>
-				<img src={footerAdorment} alt='Big black slash' className={classes.adornment} />
 			</div>
 		</footer>
 	);
